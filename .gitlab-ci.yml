@@ -1,0 +1,59 @@
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  # Define variables such as your registry URL, project name, etc.
+  CONTAINER_REGISTRY: registry.gitlab.com
+  IMAGE_NAME: $CONTAINER_REGISTRY/dzakaeryan/identity-server
+  TAG: latest
+  GCLOUD_SERVICE_KEY: 08886378a46cd3a253990f1f332653def3e38936
+  GCP_PROJECT_ID: medinesia-dev
+  GIT_SUBMODULE_STRATEGY: recursive
+  # gcp_credential_dev: "$gcp_credential_dev"
+
+before_script:
+  - echo ${HOME}
+  - echo "$GCLOUD_SERVICE_KEY"
+
+
+build-master:
+  stage: build
+  only:
+    - main
+  script:
+    # - git submodule init
+    # - docker image rm $IMAGE_NAME:$TAG
+    - cp ${HOME}/gcp-credential-prod.json gcp-credential-prod.json
+    - git submodule update --remote
+    - docker build --no-cache -t $IMAGE_NAME:$TAG .
+
+build-dev:
+  stage: build
+  only:
+    - development
+  script:
+    - docker -v
+    - docker build --no-cache -t $IMAGE_NAME:$TAG .
+
+test:
+  stage: test
+  script:
+    # Add your testing commands here
+    - echo "Running testss.."
+
+deploy-dev:
+  stage: deploy
+  only:
+    - development
+  script:
+    - gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+    - gcloud auth configure-docker
+    # - gcloud container clusters get-credentials medinesia-dev --project medinesia-dev --region asia-southeast2-cv
+    - docker tag $IMAGE_NAME:$TAG asia.gcr.io/medinesia-dev/medinesia/test/patient-management-service:dev
+    - docker push asia.gcr.io/medinesia-dev/medinesia/test/patient-management-service:dev
+    # Add your deployment commands here
+    - echo "Deploying..."
+
+
