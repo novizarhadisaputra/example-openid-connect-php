@@ -1,0 +1,366 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "HIS-V2",
+        "contact": {},
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.dev.ihc.id",
+            "variables": {}
+        }
+    ],
+    "paths": {
+        "/v2/surgery-order/{id}": {
+            "get": {
+                "tags": [
+                    "SURGERIES"
+                ],
+                "summary": "FIND",
+                "operationId": "FIND",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "string",
+                            "example": "9b3d185b-de27-4518-83f4-3f088676772c"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                },
+                "deprecated": false,
+                "servers": [
+                    {
+                        "url": "https://api.dev.ihc.id",
+                        "variables": {}
+                    }
+                ]
+            }
+        },
+        "/v2/surgery-order": {
+            "post": {
+                "tags": [
+                    "SURGERIES"
+                ],
+                "summary": "CREATE",
+                "operationId": "CREATE",
+                "parameters": [],
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/CREATEREQUEST"
+                                    },
+                                    {
+                                        "example": {
+                                            "patientId": "3b342af6-5af5-449b-a17e-b52f6f93d8d0",
+                                            "surgery": {
+                                                "isCito": true,
+                                                "date": "2024-01-12",
+                                                "time": "01:00",
+                                                "doctorId": "c434e928-8cbc-4e53-bd08-aa9cd540e667",
+                                                "icdId": [
+                                                    "45a78573-e43e-4585-8bc0-565ae1932b48",
+                                                    "ed9744a0-2403-437e-9b2e-f7f0f5dff6ef"
+                                                ],
+                                                "preoperativeDiagnosis": "Test"
+                                            },
+                                            "inpatient": {
+                                                "date": "2024-01-12",
+                                                "category": "ed9744a0-2403-437e-9b2e-f7f0f5dff6eg",
+                                                "class": "ed9744a0-2403-437e-9b2e-f7f0f5dff6ei",
+                                                "room": "ed9744a0-2403-437e-9b2e-f7f0f5dff6ee",
+                                                "nik": "7237234234234"
+                                            }
+                                        }
+                                    }
+                                ]
+                            },
+                            "example": {
+                                "patientId": "3b342af6-5af5-449b-a17e-b52f6f93d8d0",
+                                "surgery": {
+                                    "isCito": true,
+                                    "date": "2024-01-12",
+                                    "time": "01:00",
+                                    "doctorId": "c434e928-8cbc-4e53-bd08-aa9cd540e667",
+                                    "icdId": [
+                                        "45a78573-e43e-4585-8bc0-565ae1932b48",
+                                        "ed9744a0-2403-437e-9b2e-f7f0f5dff6ef"
+                                    ],
+                                    "preoperativeDiagnosis": "Test"
+                                },
+                                "inpatient": {
+                                    "date": "2024-01-12",
+                                    "category": "ed9744a0-2403-437e-9b2e-f7f0f5dff6eg",
+                                    "class": "ed9744a0-2403-437e-9b2e-f7f0f5dff6ei",
+                                    "room": "ed9744a0-2403-437e-9b2e-f7f0f5dff6ee",
+                                    "nik": "7237234234234"
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                },
+                "deprecated": false,
+                "servers": [
+                    {
+                        "url": "https://api.dev.ihc.id",
+                        "variables": {}
+                    }
+                ]
+            }
+        },
+        "/{id}": {
+            "put": {
+                "tags": [
+                    "SURGERIES"
+                ],
+                "summary": "UPDATE",
+                "operationId": "UPDATE",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "style": "simple",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/UPDATEREQUEST"
+                                    },
+                                    {
+                                        "example": {
+                                            "name": "order-3"
+                                        }
+                                    }
+                                ]
+                            },
+                            "example": {
+                                "name": "order-3"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                },
+                "deprecated": false,
+                "servers": [
+                    {
+                        "url": "http://localhost:8888/api/v2/surgery-order",
+                        "variables": {}
+                    }
+                ]
+            }
+        },
+        "/api/health-check": {
+            "get": {
+                "tags": [
+                    "Misc"
+                ],
+                "summary": "Health-check",
+                "operationId": "Health-check",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "headers": {}
+                    }
+                },
+                "deprecated": false,
+                "servers": [
+                    {
+                        "url": "https://api.dev.ihc.id",
+                        "variables": {}
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CREATEREQUEST": {
+                "title": "CREATEREQUEST",
+                "required": [
+                    "patientId",
+                    "surgery",
+                    "inpatient"
+                ],
+                "type": "object",
+                "properties": {
+                    "patientId": {
+                        "type": "string"
+                    },
+                    "surgery": {
+                        "$ref": "#/components/schemas/Surgery"
+                    },
+                    "inpatient": {
+                        "$ref": "#/components/schemas/Inpatient"
+                    }
+                },
+                "example": {
+                    "patientId": "3b342af6-5af5-449b-a17e-b52f6f93d8d0",
+                    "surgery": {
+                        "isCito": true,
+                        "date": "2024-01-12",
+                        "time": "01:00",
+                        "doctorId": "c434e928-8cbc-4e53-bd08-aa9cd540e667",
+                        "icdId": [
+                            "45a78573-e43e-4585-8bc0-565ae1932b48",
+                            "ed9744a0-2403-437e-9b2e-f7f0f5dff6ef"
+                        ],
+                        "preoperativeDiagnosis": "Test"
+                    },
+                    "inpatient": {
+                        "date": "2024-01-12",
+                        "category": "ed9744a0-2403-437e-9b2e-f7f0f5dff6eg",
+                        "class": "ed9744a0-2403-437e-9b2e-f7f0f5dff6ei",
+                        "room": "ed9744a0-2403-437e-9b2e-f7f0f5dff6ee",
+                        "nik": "7237234234234"
+                    }
+                }
+            },
+            "Surgery": {
+                "title": "Surgery",
+                "required": [
+                    "isCito",
+                    "date",
+                    "time",
+                    "doctorId",
+                    "icdId",
+                    "preoperativeDiagnosis"
+                ],
+                "type": "object",
+                "properties": {
+                    "isCito": {
+                        "type": "boolean"
+                    },
+                    "date": {
+                        "type": "string"
+                    },
+                    "time": {
+                        "type": "string"
+                    },
+                    "doctorId": {
+                        "type": "string"
+                    },
+                    "icdId": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": ""
+                    },
+                    "preoperativeDiagnosis": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "isCito": true,
+                    "date": "2024-01-12",
+                    "time": "01:00",
+                    "doctorId": "c434e928-8cbc-4e53-bd08-aa9cd540e667",
+                    "icdId": [
+                        "45a78573-e43e-4585-8bc0-565ae1932b48",
+                        "ed9744a0-2403-437e-9b2e-f7f0f5dff6ef"
+                    ],
+                    "preoperativeDiagnosis": "Test"
+                }
+            },
+            "Inpatient": {
+                "title": "Inpatient",
+                "required": [
+                    "date",
+                    "category",
+                    "class",
+                    "room",
+                    "nik"
+                ],
+                "type": "object",
+                "properties": {
+                    "date": {
+                        "type": "string"
+                    },
+                    "category": {
+                        "type": "string"
+                    },
+                    "class": {
+                        "type": "string"
+                    },
+                    "room": {
+                        "type": "string"
+                    },
+                    "nik": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "date": "2024-01-12",
+                    "category": "ed9744a0-2403-437e-9b2e-f7f0f5dff6eg",
+                    "class": "ed9744a0-2403-437e-9b2e-f7f0f5dff6ei",
+                    "room": "ed9744a0-2403-437e-9b2e-f7f0f5dff6ee",
+                    "nik": "7237234234234"
+                }
+            },
+            "UPDATEREQUEST": {
+                "title": "UPDATEREQUEST",
+                "required": [
+                    "name"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "name": "order-3"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "SURGERIES"
+        },
+        {
+            "name": "Misc",
+            "description": ""
+        }
+    ]
+}
