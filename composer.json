@@ -10,17 +10,12 @@
         "darkaonline/l5-swagger": "^8.5",
         "dto-ihc/his-v2-auth-middleware": "^1.0.4",
         "guzzlehttp/guzzle": "^7.8",
-        "ivanwilliammd/satusehat-integration": "^1.1",
-        "jeremy379/laravel-openid-connect": "^2.0",
         "jumbojett/openid-connect-php": "^1.0",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
-        "lcobucci/jwt": "^4.0",
-        "league/oauth2-server": "^8.2",
         "spatie/laravel-permission": "^6.3",
         "symfony/cache": "^7.0",
-        "uisits/laravel-oidc": "^10.0",
         "unleash/client": "^2.3"
     },
     "repositories": [
