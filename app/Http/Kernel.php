@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\Cors;
+use App\Http\Middleware\UnleashMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -23,6 +24,8 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        \Illuminate\Session\Middleware\StartSession::class,
+        \Illuminate\View\Middleware\ShareErrorsFromSession::class,
         Cors::class,
     ];
 
@@ -67,6 +70,7 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'auth.verification' => AuthMiddleware::class
+        'auth.verification' => AuthMiddleware::class,
+        'unleash' => UnleashMiddleware::class,
     ];
 }

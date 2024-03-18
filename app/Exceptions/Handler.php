@@ -28,7 +28,7 @@ class Handler extends ExceptionHandler
     {
         $this->renderable(function (Exception $e, Request $request) {
             if ($request->expectsJson()) {
-                return $this->respondWithErrorWithCustomData($e, $e->getMessage());
+                return $this->respondWithErrorWithCustomData(null, $e->getMessage());
             }
         });
     }
